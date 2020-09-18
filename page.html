@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= include("page-css"); ?>
+  </head>
+  <body>
+    
+    <h1>Weight Tracker</h1>
+    <div class="form-row">
+       <label>Height(in inches): </label><input type="number" id="height">
+    </div>
+    <div class="form-row">
+       <label>Weight(in pounds): </label><input type="number" id="weight">
+    </div>
+    <div class="form-row">
+       <label>Name: </label><input type="test" id="name">
+    </div>
+    <div class="form-row">
+       <button id="runBtn">Record</button>
+    </div>
+    <div class="form-row">
+       <button id="reload">Load Data</button>
+    </div>
+    
+    <script>
+       
+       document.getElementById("reload").addEventListener("click",refreshPage);
+       
+       function refreshPage(){
+           window.open("https://script.google.com/macros/s/AKfycbwUALLQWFdG2Pbi_8_d3zvol3-tDTvdR-gKWb0vp4mhHOGVQ8nL/exec",'_top');
+           google.script.run.withSuccessHandler(generateTable).getTableData();
+       }
+    </script>    
+    
+    <script>
+    
+      document.getElementById("runBtn").addEventListener("click",doStuff);
+      
+      function doStuff(){
+         var userInfo = {}
+         
+         userInfo.uheight = document.getElementById("height").value;
+         userInfo.uweight = document.getElementById("weight").value;
+         userInfo.uname = document.getElementById("name").value;
+         
+         google.script.run.userClicked(userInfo);
+         google.script.run.doGet(e);
+      } 
+    
+    </script>
+    
+    <div class="form-row">
+       <label>Current BMI: <?= bmi; ?></label>
+    </div>
+    
+    <div class="form-row">
+       <table>
+        <thead>
+          <tr>
+              <th>Height  |</th>
+              <th>Weight  |</th>
+              <th>Name  </th>
+          </tr>
+        </thead>
+
+        <tbody id="table-body">
+          
+        </tbody>
+      </table>
+    </div>
+    <script>
+       
+       
+       document.addEventListener("DOMContentLoaded", function() {
+          google.script.run.withSuccessHandler(generateTable).getTableData();
+       });
+       
+       function generateTable(dataArray) {
+          var tbody = document.getElementById("table-body");
+          
+          dataArray.forEach(function(r){
+          
+             var row = document.createElement("tr");
+          
+             var col1 = document.createElement("td");
+             col1.textContent = r[0];
+             
+             var col2 = document.createElement("td");
+             col2.textContent = r[1];
+             
+             var col3 = document.createElement("td");
+             col3.textContent = r[2];
+          
+             row.appendChild(col1);
+             row.appendChild(col2);
+             row.appendChild(col3);
+          
+             tbody.appendChild(row);
+          
+          });  
+       }
+       
+    </script>
+  </body>
+
+</html>
+
+
