@@ -1,6 +1,12 @@
-A Weight Tracker Website Application
+# A Weight Tracker Website Application
+- Programmed with JavaScript using Google Apps Script
+- Designed the website’s interface using HTML
+- Allow user to record user’s height, weight, and name, and store these data in a Google Spreadsheet
+- Calculate user’s BMI and generate a tracking table by loading data from the Google Spreadsheet
+
 [My Site!](https://script.google.com/macros/s/AKfycbwUALLQWFdG2Pbi_8_d3zvol3-tDTvdR-gKWb0vp4mhHOGVQ8nL/exec)
 
+# Screenshots explaining how the Web App works
 User can input their height and weight along with their name to record the data
 ![Screenshot (4)](https://user-images.githubusercontent.com/70000660/93655307-666e2200-f9d7-11ea-8283-8f536d1c8210.png)
 
